@@ -225,6 +225,7 @@ svg * {
     --container-padding-x: 15px;
     --transition-duration: 0.2s;
     --color-dark-alternative: #131619;
+    --header-hight: 90px;
 }
 
 body {
@@ -289,6 +290,7 @@ a:hover {
     align-items: center;
     column-gap: 20px;
     padding-inline: 32px;
+    min-height: var(--header-hight);
     background-color: var(--color-dark-alternative);
 }
 
@@ -371,7 +373,7 @@ a:hover {
     flex-direction: column;
     justify-content: end;
     padding: 36px 70px;
-    min-height: 985px;
+    min-height: calc(100vh - var(--header-hight));
     color: var(--color-light);
     background-color: var(--color-dark-alternative);
 }
@@ -383,21 +385,21 @@ a:hover {
 .banner-info {
     display: flex;
     align-items: end;
-    font-size: 38px;
+    font-size: min(16px, 1.56vw, 30px);
     line-height: 1.27;
     font-weight: 700;
 }
 
 .banner-info::before {
     content: "";
-    width: 194px;
+    width: min(60px, 10.1vw, 194px);
     aspect-ratio: 1;
     margin-right: 30px;
     background: url('/icons/bold-arrow-down-right.svg') center/contain no-repeat;
 }
 
 .banner-title {
-    font-size: 360px;
+    font-size: min(18.75vw, 360px);
     line-height: 1;
 }
 
@@ -437,12 +439,60 @@ a:hover {
     border-color: var(--color-light-gray);
 }
 
+.motivation-item:nth-child(even) {
+    background-color: var(--color-dark-alternative);
+}
+
+.motivation-item:nth-child(even) .motivation-card {
+    flex-direction: row-reverse;
+}
+
+.motivation-card {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    column-gap: clamp(30px, 10.42vw, 200px);
+}
+
+.motivation-card-image {
+    margin-block: -60px;
+}
+
+.motivation-card-body {
+    padding-left: 35px;
+}
+
+.title-medium {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--color-light);
+}
+
+.backdrop-title {
+    position: relative;
+    z-index: 2;
+}
+
+.backdrop-title::before {
+    content: "";
+    position: absolute;
+    right: calc(100% + 8px);
+    display: block;
+    width: 26px;
+    aspect-ratio: 1;
+    background: url("/icons/plus.svg") center/contain no-repeat;
+}
 
 @media (max-width: 1024px) {
     .header {
         flex-wrap: wrap;
         padding-top: 20px;
         row-gap: 10px;
+    }
+
+    .header,
+    .banner {
         padding-inline: 15px;
     }
 
@@ -454,6 +504,11 @@ a:hover {
     .header-menu-link {
         height: 50px;
     }
+
+    .banner {
+        row-gap: 10px;
+    }
+
 
 }
 
@@ -476,6 +531,14 @@ a:hover {
 
     .header-actions {
         column-gap: 15px;
+    }
+
+    .banner-info {
+        margin-bottom: 5px;
+    }
+
+    .banner-info::before {
+        margin-right: 10px;
     }
 }
 
